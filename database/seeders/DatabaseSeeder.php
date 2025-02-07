@@ -21,5 +21,6 @@ class DatabaseSeeder extends Seeder
         ]); */
 
         $this->call([GameSeeder::class]);
+        $this->call([PlatformsSeeder::class]);
     }
 }

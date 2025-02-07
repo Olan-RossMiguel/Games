@@ -1,8 +1,10 @@
+import Navbar from '@/Components/Navbar';
 import Card from '@/Components/Card';
 
 export default function Index({games}){
     return (
         <>
+        <Navbar></Navbar>
         {games?.map((game) => (
             <Card 
             key={game.id} 
