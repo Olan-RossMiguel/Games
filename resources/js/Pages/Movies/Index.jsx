@@ -5,7 +5,8 @@ export default function Index() {
   return (
     <div>
         <Navbar></Navbar>
-        Index</div>
+        Peliculas
+    </div>
     
   )
 }
