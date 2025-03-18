@@ -31,8 +31,37 @@ class GameController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request)->all;
+        // Registrar en los logs los datos recibidos
+        \Log::info('Datos recibidos:', $request->all());
+        // return back ();
+    
+        // Validar los datos del formulario
+        $validatedData = $request->validate([
+            'name' => 'required|string|max:255',
+            'classification' => 'required|string|max:255',
+            'price' => 'required|numeric',
+            'description' => 'required|string',
+        ]);
+    
+        // Asegurar que 'price' sea numérico
+        $validatedData['price'] = (float) $validatedData['price'];
+    
+        // Guardar el juego en la base de datos
+        try {
+            $game = Game::create($validatedData);
+            return response()->json([
+                'message' => 'El juego se ha guardado correctamente',
+                'data' => $game,
+            ], 201);
+        } catch (\Exception $e) {
+            \Log::error('Error al guardar el juego: ' . $e->getMessage());
+            return response()->json([
+                'message' => 'Error al guardar el juego',
+                'error' => $e->getMessage(),
+            ], 500);
+        }
     }
+    
 
     /**
      * Display the specified resource.
