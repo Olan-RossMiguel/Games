@@ -68,7 +68,12 @@ class GameController extends Controller
      */
     public function show(string $id)
     {
-        //
+        
+        $game = Game::findOrFail($id);
+        return Inertia::render('Games/Show', [
+            'game' => $game,
+            'image_url' => url('/') . "/storage/" . $game->image
+        ]);
     }
 
     /**

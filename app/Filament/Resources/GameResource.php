@@ -7,6 +7,7 @@ use App\Filament\Resources\GameResource\RelationManagers;
 use App\Models\Game;
 use Filament\Forms;
 use Filament\Forms\Components\FileUpload;
+use Filament\Forms\Components\Repeater;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -40,9 +41,17 @@ class GameResource extends Resource
                 ->label('Precio'),
                 TextInput::make('description')
                 ->label('Descripcion'),
-                FileUpload::make('attachment')
+                FileUpload::make('image')
+                ->disk('public')
                 ->image()
-                ->imageEditor()
+                ->imageEditor(),
+                Repeater::make('comments')
+                ->relationship()
+                ->schema([
+                    TextInput::make('user.name'),
+                    TextInput::make('description')
+                ])
+                
               
             ]);
     }

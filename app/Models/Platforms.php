@@ -9,4 +9,5 @@ class Platforms extends Model
 {
     /** @use HasFactory<\Database\Factories\PlatformsFactory> */
     use HasFactory;
+    
 }

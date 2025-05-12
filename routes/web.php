@@ -9,7 +9,7 @@ Route::resource('games', GameController::class);
 
 Route::get('/movies', function (){
 return Inertia::render('Movies/Index');
-});
+})/* ->name('movies.index') */;
 
 Route::get('/songs', function (){
     return Inertia::render('Songs/Index');
